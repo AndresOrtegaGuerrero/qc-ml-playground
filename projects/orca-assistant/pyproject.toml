@@ -1,0 +1,15 @@
+[project]
+name = "orca-assistant"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "pymupdf", "pypdf", "tiktoken",
+    "chromadb", "ollama",
+    "streamlit", "pydantic", "jinja2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["ingest", "rag", "app"]

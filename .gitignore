@@ -12,3 +12,7 @@ projects/*/models/
 *.gbw
 *.tmp
 .DS_Store
+
+
+projects/*/data/pages.jsonl
+projects/*/data/chunks.jsonl
