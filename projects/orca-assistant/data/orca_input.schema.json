@@ -1,0 +1,474 @@
+{
+  "$defs": {
+    "Basis": {
+      "additionalProperties": false,
+      "description": "Basis set specification for ORCA",
+      "properties": {
+        "aux_j": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Coulomb fitting basis, e.g. def2/J",
+          "title": "Aux J"
+        },
+        "aux_jk": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Coulomb+exchange fitting basis, e.g. def2/JK",
+          "title": "Aux Jk"
+        },
+        "aux_c": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "correlation fitting basis, e.g. def2-SVP/C",
+          "title": "Aux C"
+        },
+        "per_element": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "overrides, e.g. {\"Fe\": \"def2-TZVP\"}",
+          "title": "Per Element",
+          "type": "object"
+        }
+      },
+      "title": "Basis",
+      "type": "object"
+    },
+    "CasscfBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "casscf",
+          "default": "casscf",
+          "title": "Kind",
+          "type": "string"
+        },
+        "nel": {
+          "description": "active electrons",
+          "exclusiveMinimum": 0,
+          "title": "Nel",
+          "type": "integer"
+        },
+        "norb": {
+          "description": "active orbitals",
+          "exclusiveMinimum": 0,
+          "title": "Norb",
+          "type": "integer"
+        },
+        "nroots": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          ],
+          "default": 1,
+          "description": "roots, or one entry per multiplicity block",
+          "title": "Nroots"
+        },
+        "mult": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "multiplicity per block; default: the molecule's",
+          "title": "Mult"
+        },
+        "ptmethod": {
+          "anyOf": [
+            {
+              "enum": [
+                "sc",
+                "fic",
+                "pc",
+                "dlpno",
+                "dlpno_nevpt2",
+                "fic_nevpt2",
+                "sc_nevpt2",
+                "fic_caspt2",
+                "fic_caspt2k",
+                "fic_caspt2s"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "NEVPT2/CASPT2 variant on top of CASSCF",
+          "title": "Ptmethod"
+        }
+      },
+      "required": [
+        "nel",
+        "norb"
+      ],
+      "title": "CasscfBlock",
+      "type": "object"
+    },
+    "Directives": {
+      "additionalProperties": false,
+      "properties": {
+        "base": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "output file base name",
+          "title": "Base"
+        },
+        "moinp": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "gbw file to read orbitals from (inside the working directory); MORead is added automatically",
+          "title": "Moinp"
+        }
+      },
+      "title": "Directives",
+      "type": "object"
+    },
+    "GenericBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "generic",
+          "default": "generic",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "enum": [
+            "autoci",
+            "basis",
+            "casscf",
+            "cis",
+            "cosmors",
+            "cpcm",
+            "docker",
+            "eda",
+            "elprop",
+            "eprnmr",
+            "frag",
+            "freq",
+            "geom",
+            "goat",
+            "ice",
+            "irc",
+            "loc",
+            "mdci",
+            "method",
+            "mp2",
+            "neb",
+            "output",
+            "qmmm",
+            "rel",
+            "rocis",
+            "scf",
+            "solvator",
+            "tddft",
+            "xtb"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "settings": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "description": "keywords of that block",
+          "title": "Settings",
+          "type": "object"
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "verbatim block body when settings cannot express it",
+          "title": "Raw"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "GenericBlock",
+      "type": "object"
+    },
+    "Header": {
+      "additionalProperties": false,
+      "description": "Header specification for ORCA",
+      "properties": {
+        "method": {
+          "description": "HF, B3LYP, CASSCF, DLPNO-CCSD(T), ...",
+          "title": "Method",
+          "type": "string"
+        },
+        "basis": {
+          "$ref": "#/$defs/Basis"
+        },
+        "tasks": {
+          "items": {
+            "enum": [
+              "SP",
+              "Opt",
+              "OptTS",
+              "Freq",
+              "NumFreq",
+              "NumGrad"
+            ],
+            "type": "string"
+          },
+          "title": "Tasks",
+          "type": "array"
+        },
+        "opt_convergence": {
+          "anyOf": [
+            {
+              "enum": [
+                "Loose",
+                "Normal",
+                "Tight",
+                "VeryTight"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Opt Convergence"
+        },
+        "scf_convergence": {
+          "anyOf": [
+            {
+              "enum": [
+                "Sloppy",
+                "Loose",
+                "Normal",
+                "Strong",
+                "Tight",
+                "VeryTight"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scf Convergence"
+        },
+        "scf_type": {
+          "anyOf": [
+            {
+              "enum": [
+                "RHF",
+                "UHF",
+                "ROHF",
+                "RKS",
+                "UKS",
+                "ROKS"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Scf Type"
+        },
+        "keywords": {
+          "description": "other ! flags: RIJCOSX, D4, TightSCF is NOT here",
+          "items": {
+            "type": "string"
+          },
+          "title": "Keywords",
+          "type": "array"
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "title": "Header",
+      "type": "object"
+    },
+    "Molecule": {
+      "additionalProperties": false,
+      "description": "Molecule specification for ORCA",
+      "properties": {
+        "charge": {
+          "default": 0,
+          "title": "Charge",
+          "type": "integer"
+        },
+        "mult": {
+          "default": 1,
+          "description": " spin multiplicity (2S+1)",
+          "minimum": 1,
+          "title": "Mult",
+          "type": "integer"
+        },
+        "xyzfile": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": " path to xyz file",
+          "title": "Xyzfile"
+        },
+        "xyz": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": " inline coordinates, e.g. 'C 0 0 0' per line ",
+          "title": "Xyz"
+        }
+      },
+      "title": "Molecule",
+      "type": "object"
+    },
+    "Resources": {
+      "additionalProperties": false,
+      "properties": {
+        "nprocs": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Nprocs",
+          "type": "integer"
+        },
+        "maxcore": {
+          "default": 2000,
+          "description": "memory per core in MB",
+          "minimum": 100,
+          "title": "Maxcore",
+          "type": "integer"
+        }
+      },
+      "title": "Resources",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "header": {
+      "$ref": "#/$defs/Header"
+    },
+    "molecule": {
+      "$ref": "#/$defs/Molecule"
+    },
+    "directives": {
+      "$ref": "#/$defs/Directives"
+    },
+    "resources": {
+      "$ref": "#/$defs/Resources"
+    },
+    "blocks": {
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "casscf": "#/$defs/CasscfBlock",
+            "generic": "#/$defs/GenericBlock"
+          },
+          "propertyName": "kind"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/CasscfBlock"
+          },
+          {
+            "$ref": "#/$defs/GenericBlock"
+          }
+        ]
+      },
+      "title": "Blocks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "header",
+    "molecule"
+  ],
+  "title": "OrcaInput",
+  "type": "object"
+}

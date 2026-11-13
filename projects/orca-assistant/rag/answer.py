@@ -20,6 +20,8 @@ Follow these rules strictly:
    in a code block.
 5. If the manual describes a limitation or warning, include when relevant.
 6. Cite the section you used, e.g. (3.13.3 Basic Usage, p. 359)
+7. Fill only what the request asks for or clearly implies. An unset field is correct; an invented one is wrong.
+8. If the request is to generate an input file, generate only the basic input file, without inventing or adding extra keywords, suggest in test if other should be considered.
 """
 
 

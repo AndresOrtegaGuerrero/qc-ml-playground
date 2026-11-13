@@ -1,0 +1,20 @@
+# UKS single point with the M06-2X functional and def2-TZVP, singlet neutral molecule mol.xyz, break the symmetry by mixing 50 percent of the alpha LUMO into the alpha HOMO (guessmix)
+# 50% = default 45 degrees -> guessmix true / keyword; a percentage other than 50 goes to %scf guessmix <angle>
+# retrieved: p221 2.20.8 Automatically Breaking of the Initial Guess Symmetry; p1561 10.3 Units and Conversion Factors; p1137 5.34.3 Input and examples; p1135 5.34.3 Input and examples; p545 3.19.11 Multireference Systems - Ozone
+
+! m062x def2-tzvp uks
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+%scf
+    guessmix 45.0
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:
+header.keywords: Value error, unknown keyword 'GUESSMIX'
+---
+header.keywords: Value error, unknown keyword '%scf guessmix 45 end'

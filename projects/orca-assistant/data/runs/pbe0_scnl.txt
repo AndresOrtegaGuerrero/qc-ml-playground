@@ -1,0 +1,13 @@
+# PBE0 single point with def2-TZVP and the self-consistent non-local rVV10 dispersion (SCNL) for the neutral singlet in mol.xyz
+# SCNL is a simple keyword in OPI; rVV10 is implied by NL in ORCA
+# retrieved: p744 5.1.10 Local Spin Analysis; p263 3.4.2 Non-Local Dispersion Correction (VV10): DFT-NL; p264 3.4.2 Non-Local Dispersion Correction (VV10): DFT-NL; p280 3.6.6 ωB97X-3c; p541 3.19.9 Energy Differences - Spin Flipping
+
+! pbe0 def2-tzvp rks scnl
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:

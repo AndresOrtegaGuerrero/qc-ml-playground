@@ -1,0 +1,66 @@
+{
+  "header": {
+    "method": "CASSCF",
+    "basis": {
+      "main": "def2-SVP",
+      "aux": ["def2/J", "def2-SVP/C"],
+      "per_element": {}
+    },
+    "tasks": [
+      "SP"
+    ],
+    "keywords": [
+      "RIJCOSX"
+    ]
+  },
+  "molecule": {
+    "charge": 0,
+    "mult": 1,
+    "xyzfile": "structure.xyz"
+  },
+  "directives": {
+    "base": "mol",
+    "moinp": "cas1414t2.gbw"
+  },
+  "resources": {
+    "nprocs": 12,
+    "maxcore": 18000
+  },
+  "blocks": [
+    {
+      "kind": "casscf",
+      "nel": 14,
+      "norb": 14,
+      "nroots": [
+        9,
+        9
+      ],
+      "mult": [
+        1,
+        3
+      ],
+      "ptmethod": "sc_nevpt2",
+      "raw": "PTSettings\n  PrintLevel 1\n  QDType QD_VanVleck\n  QDPopulationAnalysis true\n  QDNatOrbs true\nend\nci\n  TPrintWF 1e-6\nend",
+      "extra": {
+        "donto": true,
+        "dondo": true,
+        "maxiter": 1000,
+        "trafostep": "ri",
+        "printwf": "det"
+      }
+    },
+    {
+      "kind": "generic",
+      "name": "scf",
+      "settings": {
+        "maxiter": 1000
+      }
+    },
+    {
+      "kind": "generic",
+      "name": "output",
+      "settings": {},
+      "raw": "Print[P_Basis] 2\nPrint[P_MOs] 1"
+    }
+  ]
+}

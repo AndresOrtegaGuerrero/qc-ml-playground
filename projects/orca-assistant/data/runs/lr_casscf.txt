@@ -1,0 +1,22 @@
+# Linear-response CASSCF(10,10) with def2-TZVP computing the first 6 singlet excitations of a neutral closed-shell molecule mol.xyz, and print the NTOs and NDOs
+# 6 excitations = 7 roots incl. ground state; donto/dondo exist in BlockCasscf
+# retrieved: p782 5.4.6 Excited States with IH-FSMR-CCSD; p423 3.13.10 Example: Excited States; p536 3.19.7 Thresholds; p584 3.20.4 Details on the Multireference Equation of Motion Coupled-Cluster (MR-; p744 5.1.10 Local Spin Analysis
+
+! casscf def2-tzvp
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+%casscf
+    nel 10
+    norb 10
+    mult 1
+    nroots 6
+    donto True
+    dondo True
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:

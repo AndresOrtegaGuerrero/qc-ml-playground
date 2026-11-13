@@ -1,0 +1,5 @@
+{"header": {"method": "M06-2X",
+            "basis": {"main": "def2-SVP", "aux": ["def2-SVP/C", "def2/J", "def2-TZVP/C"],
+                      "per_element": {"all": "def2-SVP", "Zn": "def2-TZVP"}},
+            "tasks": ["Opt"], "scf_type": "UKS", "keywords": ["UNO", "QRO"]},
+ "molecule": {"charge": 1, "mult": 4, "xyzfile": "structure.xyz"}}

@@ -1,0 +1,14 @@
+# r2SCAN-3c geometry optimisation followed by frequencies for the neutral closed-shell molecule mol.xyz, tight SCF, 8 cores and 4000 MB per core
+# composite method: no basis.main allowed; tasks list; resources
+# retrieved: p279 3.6.3 r2SCAN-3c; p543 3.19.10 Potential Energy Surfaces; p343 3.10.10 Local correlation (DLPNO); p534 3.19.5 Excitation Energies between Different Multiplicities; p1545 10.3 Units and Conversion Factors
+
+! r2scan-3c opt freq tightscf rks
+%maxcore 4000
+%pal
+    nprocs 8
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:
+header: Value error, r2scan-3c is a composite method that includes its basis; unset basis.main

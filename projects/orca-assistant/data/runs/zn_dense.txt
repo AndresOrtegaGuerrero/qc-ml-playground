@@ -1,0 +1,18 @@
+# M06-2X unrestricted DFT optimization, print UNO, use def2-svp basis for all elements but define a new def2-tzvp for Zn element, use DEF2-SVP/C and DEF2/J for the auxiliary basis and define the auxiliary for Zn def2-tzvp/c separately as well, use the cation charge (+1) with a quartet multiplicity (4), structure in mol.xyz
+# the dense request that started this
+# retrieved: p1561 10.3 Units and Conversion Factors; p96 2.7.3 Relativistic Basis Sets; p29 1.6.5 Some Method-specific Recommendations; p280 3.6.6 ωB97X-3c; p82 2.7.1 Basic Usage
+
+! m062x def2-svp def2/j def2-svp/c opt uks uno
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+%basis
+    newgto Zn "def2-tzvp" end
+    newauxcgto Zn "def2-tzvp/c" end
+end
+
+*xyzfile 1 4 mol.xyz
+
+# errors:

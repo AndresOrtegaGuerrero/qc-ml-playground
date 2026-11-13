@@ -1,0 +1,44 @@
+# CASSCF(8,8) with SC-NEVPT2 on top, def2-SVP, for a neutral molecule: singlets and triplets, 2 singlet roots and 3 triplet roots, structure in mol.xyz
+# mult/nroots lists in the typed casscf block
+# retrieved: p493 3.16.1 A simple Example: N2 Ground State; p585 3.20.4 Details on the Multireference Equation of Motion Coupled-Cluster (MR-; p421 3.13.9 Example: Breaking Chemical Bonds; p420 3.13.9 Example: Breaking Chemical Bonds; p584 3.20.4 Details on the Multireference Equation of Motion Coupled-Cluster (MR-
+
+{
+  "header": {
+    "method": "casscf",
+    "basis": {"main": "def2-SVP"},
+    "tasks": ["SP"],
+    "shell": "closed-shell"
+  },
+  "molecule": {"xyzfile": "mol.xyz"},
+  "blocks": [
+    {
+      "name": "casscf",
+      "settings": {
+        "nel": 8,
+        "norb": 8,
+        "mult": 1,
+        "nroots": 2
+      },
+      "raw": "ptmethod SC-NEVPT2"
+    },
+    {
+      "name": "casscf",
+      "settings": {
+        "nel": 8,
+        "norb": 8,
+        "mult": 3,
+        "nroots": 3
+      },
+      "raw": "ptmethod SC-NEVPT2"
+    }
+  ]
+}
+
+# errors:
+: Invalid JSON: EOF while parsing a string at line 16 column 6695
+---
+header: Value error, keyword 'sc-nevpt2' duplicates header.method or header.basis; remove it from keywords
+blocks.1.casscf.nel: Field required
+blocks.1.casscf.norb: Field required
+---
+: Value error, each block may appear only once; for several multiplicities use one casscf block with mult [1, 3] and nroots [2, 3]

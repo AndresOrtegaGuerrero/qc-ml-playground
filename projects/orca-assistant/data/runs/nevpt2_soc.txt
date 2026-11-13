@@ -1,0 +1,25 @@
+# CASSCF(6,6)/SC-NEVPT2 def2-TZVP for the neutral molecule mol.xyz with 5 singlet excited states, include spin-orbit coupling
+# SOC is the nested %casscf rel ... dosoc true ... end sub-block -> raw
+# retrieved: p1644 10.3 Units and Conversion Factors; p423 3.13.10 Example: Excited States; p425 3.13.11 Example: Large Active Spaces using ICE-CI; p584 3.20.4 Details on the Multireference Equation of Motion Coupled-Cluster (MR-; p925 5.10.9 Spin-Orbit Coupling (Experimental)
+
+! casscf def2-tzvp
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+%casscf
+    nel 6
+    norb 6
+    mult 1
+    nroots 5
+    ptmethod sc_nevpt2
+STEOMSOC true
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:
+blocks.0.casscf.ptmethod: Value error, ptmethod 'NEVPT2': use one of ['sc', 'fic', 'pc', 'dlpno', 'dlpno_nevpt2', 'fic_nevpt2', 'sc_nevpt2', 'fic_caspt2', 'fic_caspt2k', 'fic_caspt2s']; plain NEVPT2 means sc_nevpt2 or fic_nevpt2
+---
+%casscf does not accept ['extra']; known settings include ['actconstraints', 'actorbs', 'aftercoord', 'buildhessian', 'bweight', 'cas_ewin', 'cistep', 'convrate', 'decomposefosclength', 'decomposefoscvelocity', 'diisthresh', 'docd', 'dodipolelength', 'dodipolevelocity', 'dofullsemiclassical', 'dohighermoments', 'doipea', 'dondo', 'donto', 'dotransdens']

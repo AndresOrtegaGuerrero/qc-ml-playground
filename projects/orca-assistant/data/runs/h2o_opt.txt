@@ -1,0 +1,17 @@
+# PBE0 optimization with def2-tzvp basis for the H2O molecule: O 0.0074 0.0116 0.0165, H 0.9692 0.0116 -0.0079, H -0.2365 0.9417 -0.0180
+# simple request with inline coordinates; must not invent aux, per_element or %scf
+# retrieved: p1176 5.36.9 Atomic Decomposition Methods; p1561 10.3 Units and Conversion Factors; p1162 5.36.2 Example: LED analysis of intermolecular interactions; p1163 5.36.2 Example: LED analysis of intermolecular interactions; p1162 5.36.2 Example: LED analysis of intermolecular interactions
+
+! pbe0 def2-tzvp opt rks
+%maxcore 1000
+%pal
+    nprocs 1
+end
+
+* xyz 0 1
+O             0.0074000000000000             0.0116000000000000             0.0165000000000000
+H             0.9692000000000000             0.0116000000000000            -0.0079000000000000
+H            -0.2365000000000000             0.9417000000000000            -0.0180000000000000
+*
+
+# errors:

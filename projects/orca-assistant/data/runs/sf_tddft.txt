@@ -1,0 +1,35 @@
+# Spin-flip TDDFT single point with BHandHLYP and def2-TZVP on a triplet neutral molecule in mol.xyz, 5 roots
+# OPI's BlockTddft has no sf field: expect the model to need raw 'sf true' or fail there
+# retrieved: p95 2.7.2 Orbital Basis Sets; p768 5.4.1 Excited States with RPA, CIS, TD-DFT and SF-TDA; p245 3.3.5 Double-Hybrid DFT; p534 3.19.5 Excitation Energies between Different Multiplicities; p1082 5.27 Broken-Symmetry Wavefunctions and Exchange Couplings
+
+{
+  "header": {
+    "method": "bhandhlyp",
+    "basis": {
+      "main": "def2-TZVP"
+    },
+    "tasks": ["SP"],
+    "shell": "unrestricted"
+  },
+  "molecule": {
+    "charge": 0,
+    "mult": 3,
+    "xyzfile": "mol.xyz"
+  },
+  "blocks": [
+    {
+      "name": "tddft",
+      "settings": {
+        "Nroots": 5,
+        "sf": "true"
+      }
+    }
+  ]
+}
+
+# errors:
+: Value error, %tddft does not accept ['sf'].
+---
+: Value error, %tddft does not accept ['collinear'].
+---
+: Value error, %tddft does not accept ['sf'].

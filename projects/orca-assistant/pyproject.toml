@@ -12,4 +12,4 @@ dependencies = [
 dev = ["pytest"]
 
 [tool.setuptools]
-packages = ["ingest", "rag", "app"]
+packages = ["ingest", "rag", "app", "inputs"]

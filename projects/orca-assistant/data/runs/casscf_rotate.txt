@@ -1,0 +1,28 @@
+# CASSCF(6,6) def2-SVP single point for the neutral singlet in mol.xyz, read the initial orbitals from guess.gbw and before the run rotate orbital 34 with 45 and orbital 43 with 48
+# rotate lines live in %scf: rotate {34 45 90} end — OPI Rotate takes one list; two rotations need raw
+# retrieved: p460 3.13.19 Core Excited Spectra: CAS-CI/RAS-CI XES; p566 3.19.14 Properties Calculation Using the SOC Submodule; p1114 5.32.2 Running SINGLE_ANISO Calculations; p1114 5.32.2 Running SINGLE_ANISO Calculations; p403 3.13.6 Guess: Natural Orbitals Example
+
+! casscf def2-svp
+%maxcore 2000
+%pal
+    nprocs 1
+end
+
+%casscf
+    nel 6
+    norb 6
+    nroots 1
+%rotate
+34 45
+43 48
+end
+
+end
+
+*xyzfile 0 1 mol.xyz
+
+# errors:
+: Invalid JSON: EOF while parsing a string at line 330 column 15
+---
+blocks.0.casscf.nel: Field required
+blocks.0.casscf.norb: Field required
